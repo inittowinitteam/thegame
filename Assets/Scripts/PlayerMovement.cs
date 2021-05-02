@@ -22,13 +22,17 @@ public class PlayerMovement : MonoBehaviour
     public float lastX, lastVeloX;
     public float veloY = 0;
 
-
     void Awake()
     {
         jump = new Vector2(0.0f, jumpForce);
         rigidBody = GetComponent<Rigidbody2D>();
         playerSize = GetComponent<CapsuleCollider2D>().size;
         jumpBox = new Vector2((playerSize.x * scale) - 0.05f, groundThreshold);
+    }
+
+    public Rigidbody2D getRigidBody()
+    {
+        return rigidBody;
     }
 
     void Update()
