@@ -12,29 +12,31 @@ public class FollowPlayer : MonoBehaviour
     public float smoothTimeX, smoothTimeY;
 
     private Rigidbody2D rigidBody;
-
+    private Movement hs;
     private void Awake()
     {
+        
         rigidBody = player.GetComponent<Rigidbody2D>();
+        hs = player.GetComponent<Movement>();
     }
 
     private void FixedUpdate()
     {
-
-        Debug.Log(rigidBody.velocity.x);
-
-        float x = player.transform.position.x + (rigidBody.velocity.x/3), y = player.transform.position.y + Mathf.Max(rigidBody.velocity.y/2, 0);
-
-        x = Mathf.SmoothDamp(transform.position.x, x, ref velocity.x, smoothTimeX);
-        y = Mathf.SmoothDamp(transform.position.y, y, ref velocity.y, smoothTimeY);
-
-        if (clamp)
+        if (hs.alive)
         {
-            x = Limit(x, min.x, max.x);
-            y = Limit(y, min.y, max.y);
-        }
+            float x = player.transform.position.x + (rigidBody.velocity.x), y = player.transform.position.y;
 
-        transform.position = new Vector3(x, y, -20);
+            x = Mathf.SmoothDamp(transform.position.x, x, ref velocity.x, smoothTimeX);
+            y = Mathf.SmoothDamp(transform.position.y, y, ref velocity.y, smoothTimeY);
+
+            if (clamp)
+            {
+                x = Limit(x, min.x, max.x);
+                y = Limit(y, min.y, max.y);
+            }
+
+            transform.position = new Vector3(x, y, -20);
+        }
     }
 
     private float Limit(float value, float min, float max)
