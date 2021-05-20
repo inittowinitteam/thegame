@@ -21,6 +21,8 @@ public class Platform : MonoBehaviour
 
         if (working >= max) current = min;
         else if (working <= min) current = max;
-        rigidbody.velocity = new Vector2(0, current - transform.position.y < 0 ? -1 : 1) * 4;
+
+        float offset = (current - working < 0 ? -1 : 1) * 4;
+        rigidbody.velocity = vertical ? new Vector2(0, offset) : new Vector2(offset, 0);
     }
 }

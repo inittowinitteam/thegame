@@ -51,16 +51,6 @@ UnityEditor
 AdvancedRuleOverrideTile
 UnityEngine
 RuleOverrideTile
-FileUtilityHybrid
-Unity
-Entities
-Hybrid
-ReferencedUnityObjects
-SerializeUtilityHybrid
-Serialization
-ResourceMetaData
-ResourceCatalogData
-SceneBoundingVolume
 Sysroot
 UnityEditor
 LinuxStandalone
