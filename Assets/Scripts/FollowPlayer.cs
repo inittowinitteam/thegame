@@ -12,18 +12,18 @@ public class FollowPlayer : MonoBehaviour
     public float smoothTimeX, smoothTimeY;
 
     private Rigidbody2D rigidBody;
-    private Movement hs;
+    //private Movement hs;
     private void Awake()
     {
         
         rigidBody = player.GetComponent<Rigidbody2D>();
-        hs = player.GetComponent<Movement>();
+       // hs = player.GetComponent<Movement>();
     }
 
     private void FixedUpdate()
     {
-        if (hs.alive)
-        {
+        //if (hs.alive)
+        //{
             float x = player.transform.position.x + (rigidBody.velocity.x), y = player.transform.position.y;
 
             x = Mathf.SmoothDamp(transform.position.x, x, ref velocity.x, smoothTimeX);
@@ -36,7 +36,7 @@ public class FollowPlayer : MonoBehaviour
             }
 
             transform.position = new Vector3(x, y, -20);
-        }
+        //}
     }
 
     private float Limit(float value, float min, float max)
