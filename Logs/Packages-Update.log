@@ -116,3 +116,12 @@ Update Mode: updateDependencies
 
 The following packages were updated:
   com.unity.ide.rider from version 3.0.5 to 3.0.6
+
+=== Thu May 27 22:51:10 2021
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.burst from version 1.4.8 to 1.5.3
+  com.unity.visualscripting from version 1.5.2 to 1.6.1

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private int health;
-    private bool alive;
+    private bool alive, ToggleSound;
 
     private Animator m_animator;
     private Rigidbody2D m_body2d;
@@ -27,6 +27,12 @@ public class Player : MonoBehaviour {
     public int Health { get => health; set => health = value; }
     public bool Alive { get => alive; set => alive = value; }
 
+
+    private void OnKeyCollection()
+    {
+        FindObjectOfType<AudioSystem>().Play("KeyCollection");
+        Debug.Log("Key Collected");
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 8)
@@ -37,6 +43,10 @@ public class Player : MonoBehaviour {
         else if (other.gameObject.layer == 9)
         {
             Health = 0;
+        }
+        else if (other.gameObject.layer == 10)
+        {
+           OnKeyCollection();
         }
 
         if (Health <= 0)
@@ -77,6 +87,7 @@ public class Player : MonoBehaviour {
         {
             m_grounded = true;
             m_animator.SetBool("Grounded", m_grounded);
+           
         }
 
         //Check if character just started falling
@@ -84,11 +95,30 @@ public class Player : MonoBehaviour {
         {
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
+         
         }
 
         // -- Handle input and movement --
         inputX = Input.GetAxis("Horizontal");
+        if (inputX != 0 && m_grounded)
+        {
+            if (!ToggleSound)
+            {
+                FindObjectOfType<AudioSystem>().Play("FootSteps");
 
+            }
+            ToggleSound = true;
+        } else
+        {
+            if(ToggleSound)
+            {
+                FindObjectOfType<AudioSystem>().Stop("FootSteps");
+            }
+            ToggleSound = false;
+      
+        }
+   
+        
         // Swap direction of sprite depending on walk direction
         if (inputX > 0) GetComponent<SpriteRenderer>().flipX = false;
         else if (inputX < 0) GetComponent<SpriteRenderer>().flipX = true;

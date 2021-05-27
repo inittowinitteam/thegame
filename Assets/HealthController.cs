@@ -16,7 +16,7 @@ public class HealthController : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(player.Health);
+        
         leftImage.sprite = player.Health > 0 ? active : dead;
         middleImage.sprite = player.Health > 1 ? active : dead;
         rightImage.GetComponent<Image>().sprite = player.Health > 2 ? active : dead;
